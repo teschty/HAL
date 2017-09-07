@@ -5,7 +5,7 @@ const config = require("./config.json")
 
 client.on("ready", () => {
   console.log("HAL Running")
-  client.user.setGame("2001")
+  client.user.setGame(">help")
 })
 
 client.on("message", async message => {
