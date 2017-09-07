@@ -4,8 +4,8 @@ const client = new Discord.Client()
 const config = require("./config.json")
 
 client.on("ready", () => {
-  console.log("Mother running")
-  client.user.setGame("Predator")
+  console.log("HAL Running")
+  client.user.setGame("2001")
 })
 
 client.on("message", async message => {
