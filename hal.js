@@ -17,22 +17,6 @@ client.on("message", async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  // Purge a specific number of messages
-  if(command === "purge") {
-    const deleteCount = parseInt(args[0], 10);
-    if(!deleteCount || deleteCount < 2 || deleteCount > 100)
-      return message.reply("Please provide a number between 2 and 100 for the number of messages to delete")
-    const fetched = await message.channel.fetchMessages({count: deleteCount})
-    message.channel.bulkDelete(fetched)
-      .catch(error => message.reply(`Couldn't delete messages because of: ${error}`))
-  }
-
-  // Calculate ping to websocket server
-  if (msg.content === 'ping') {
-    const m = await message.channel.send("Ping?");
-    m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
-  }
-
 })
 
 client.login(config.token)
