@@ -28,7 +28,6 @@ client.on("message", async message => {
     if (args[0]) {
       request(`http://ip-api.com/json/${ip}`, (error, response, body) => {
         const x = JSON.parse(body)
-
         message.channel.send(`\n
         IP: ${x.query}
         City: ${x.city}
@@ -42,7 +41,7 @@ client.on("message", async message => {
         console.log("IP Search: " + ip)
       })
     } else {
-    message.channel.send("Add IP address")
+    message.channel.send("Needs IP address")
     console.log("IP search failed")
     }
   }
