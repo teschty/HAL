@@ -25,21 +25,26 @@ client.on("message", async message => {
 
   if (command === 'ip') {
     const ip = args[0]
-    request(`http://ip-api.com/json/${ip}`, (error, response, body) => {
-      const x = JSON.parse(body)
+    if (args[0]) {
+      request(`http://ip-api.com/json/${ip}`, (error, response, body) => {
+        const x = JSON.parse(body)
 
-      message.reply(`
-      IP: ${x.query}
-      City: ${x.city}
-      Region: ${x.region}
-      Country: ${x.country}
-      Zip: ${x.zip}
-      ISP: ${x.isp}
-      LAT: ${x.lat}
-      LON: ${x.lon}
-      `);
-    })
-    console.log("IP Search: " + ip)
+        message.channel.send(`\n
+        IP: ${x.query}
+        City: ${x.city}
+        Region: ${x.region}
+        Country: ${x.country}
+        Zip: ${x.zip}
+        ISP: ${x.isp}
+        LAT: ${x.lat}
+        LON: ${x.lon}
+        `)
+        console.log("IP Search: " + ip)
+      })
+    } else {
+    message.channel.send("Add IP address")
+    console.log("IP search failed")
+    }
   }
 
 //------------------------------------------------------------
