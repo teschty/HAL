@@ -37,8 +37,7 @@ client.on("message", async message => {
         Zip: ${x.zip}
         ISP: ${x.isp}
         LAT: ${x.lat}
-        LON: ${x.lon}
-        `)
+        LON: ${x.lon}`)
         console.log("IP Search: " + ip)
       })
     } else {
@@ -48,14 +47,37 @@ client.on("message", async message => {
   }
 
 //------------------------------------------------------------
-//                     Movie Search Command
+//                       Weather Search
+//------------------------------------------------------------
+
+if (command === 'ip') {
+  const ip = args[0]
+  if (args[0]) {
+    request(`http://ip-api.com/json/${ip}`, (error, response, body) => {
+      const x = JSON.parse(body)
+      message.channel.send(`\n
+      IP: ${x.query}
+      City: ${x.city}
+      Region: ${x.region}
+      Country: ${x.country}
+      Zip: ${x.zip}
+      ISP: ${x.isp}
+      LAT: ${x.lat}
+      LON: ${x.lon}`)
+      console.log("IP Search: " + ip)
+    })
+  } else {
+  message.channel.send("Needs IP address")
+  console.log("IP search failed")
+  }
+}
+
+//------------------------------------------------------------
+//                         Movie Search
 //------------------------------------------------------------
 
 if (command === 'movie') {
-  
   const movie = args[0]
-
-
   if (args[0]) {
     request(`http://www.omdbapi.com/?t=${movie}&apikey=${config.ombd_key}`, (error, response, body) => {
       const x = JSON.parse(body)
@@ -67,8 +89,7 @@ if (command === 'movie') {
       Genre: ${x.Genre}
       Director: ${x.Director}
       Actors: ${x.Actors}
-      Plot: ${x.Plot}
-      `)
+      Plot: ${x.Plot}`)
       console.log("Movie Search: " + movie)
     })
   } else {
@@ -78,7 +99,7 @@ if (command === 'movie') {
 }
 
 //------------------------------------------------------------
-//                     Help Command
+//                     Help Screen
 //------------------------------------------------------------
 
   if (command === 'help') {
