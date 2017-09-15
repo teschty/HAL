@@ -48,6 +48,36 @@ client.on("message", async message => {
   }
 
 //------------------------------------------------------------
+//                     Movie Search Command
+//------------------------------------------------------------
+
+if (command === 'movie') {
+  
+  const movie = args[0]
+
+
+  if (args[0]) {
+    request(`http://www.omdbapi.com/?t=${movie}&apikey=${config.ombd_key}`, (error, response, body) => {
+      const x = JSON.parse(body)
+      message.channel.send(`
+      Title: ${x.Title}
+      Year: ${x.Year}
+      Tomato: ${x.Ratings[1].value}
+      Rated: ${x.Rated}
+      Genre: ${x.Genre}
+      Director: ${x.Director}
+      Actors: ${x.Actors}
+      Plot: ${x.Plot}
+      `)
+      console.log("Movie Search: " + movie)
+    })
+  } else {
+  message.channel.send("Needs Movie")
+  console.log("Movie search failed")
+  }
+}
+
+//------------------------------------------------------------
 //                     Help Command
 //------------------------------------------------------------
 
