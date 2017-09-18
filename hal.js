@@ -54,7 +54,7 @@ if (command === 'ip') {
       }}).catch(err => console.log(err))
     })
   } else {
-    message.channel.send("Needs IP Aargument")
+    message.channel.send("Needs IP Argument")
     console.log("IP search failed")
   }
 }
