@@ -86,7 +86,7 @@ if (command === 'movie') {
 
   if (command === 'help') {
     message.channel.send({embed: {
-      "description" : "```+[command] [args]  \n\nip           Return IP geolocation data\nurl          Return true URL from a URL shortened link\nmovie        Return data from a movie using OMBD API\nweather      Returns weather from a given location\nstock        Returns stock info for given stock\nhelp         Returns this page\n```",
+      "description" : "```+[command] [args]  \n\nip           Returns IP geolocation data\nurl          Returns true URL from a URL shortened link\nmovie        Returns data from a movie using OMBD API\nweather      Returns weather from a given location\nstock        Returns stock info for given stock\nhelp         Returns this page\n```",
       "color": 0xff0000
     }})
     console.log("Help Screen")
