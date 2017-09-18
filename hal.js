@@ -26,7 +26,7 @@ client.on("message", async message => {
 
 if (command === 'ip') {
   const ip = args[0]
-//  if (args[0]) {
+  if (args[0]) {
     request(`http://ip-api.com/json/${ip}`, (error, response, body) => {
       const x = JSON.parse(body)
       message.channel.send({embed: {
@@ -53,7 +53,12 @@ if (command === 'ip') {
         }],
       }}).catch(err => console.log(err))
     })
+  } else {
+    message.channel.send("Needs IP Aargument")
+    console.log("IP search failed")
   }
+}
+
 //------------------------------------------------------------
 //                         Movie Search
 //------------------------------------------------------------
