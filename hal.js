@@ -4,6 +4,7 @@ const Discord = require("discord.js")
 const request = require("request")
 const client = new Discord.Client()
 const config = require("./config.json")
+const talkedRecently = new Set()
 
 client.on("ready", () => {
   console.log("HAL Running")
@@ -13,12 +14,20 @@ client.on("ready", () => {
 client.on("message", async message => {
 
   // Ignore bots + commands without prefix
-  if(message.author.bot) return;
-  if(message.content.indexOf(config.prefix) !== 0) return;
+  if(message.author.bot) return
+  if(message.content.indexOf(config.prefix) !== 0) return
   
   // Creates an array from all parts of the given command
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g)
+  const command = args.shift().toLowerCase()
+
+  if (talkedRecently.has(message.author.id))
+  return;
+
+  talkedRecently.add(message.author.id)
+  setTimeout(() => {
+    talkedRecently.delete(message.author.id)
+  }, 2500)
 
 //------------------------------------------------------------
 //                     IP GEO Command
@@ -98,8 +107,8 @@ if (command === 'movie') {
   }
 })
 
-client.on("error", (e) => console.error(e));
-client.on("warn", (e) => console.warn(e));
-client.on("debug", (e) => console.info(e));
+client.on("error", (e) => console.error(e))
+client.on("warn", (e) => console.warn(e))
+client.on("debug", (e) => console.info(e))
 
 client.login(config.token)
