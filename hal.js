@@ -21,9 +21,9 @@ client.on("message", async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g)
   const command = args.shift().toLowerCase()
 
+  // Cooldown of 2.5s for msgs
   if (talkedRecently.has(message.author.id))
-  return;
-
+  return
   talkedRecently.add(message.author.id)
   setTimeout(() => {
     talkedRecently.delete(message.author.id)
