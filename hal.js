@@ -2,9 +2,9 @@
 
 const Discord = require("discord.js")
 const request = require("request")
-const client = new Discord.Client()
 const config = require("./config.json")
 const talkedRecently = new Set()
+const client = new Discord.Client()
 
 client.on("ready", () => {
   console.log("HAL Running")
