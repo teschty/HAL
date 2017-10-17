@@ -1,13 +1,26 @@
-FROM node:alpine
+FROM ubuntu:14.04
 
-LABEL maintainer="jakewmeyer@gmail.com"
+MAINTAINER jakewmeyer
 
-ENV NODE_ENV=production
+#Install dependencies
+RUN sudo apt-get update \
+    && sudo apt-get install software-properties-common -y \
+    && sudo apt-get install build-essential unzip -y \
+    && sudo apt-get install python3.5 python3.5-dev -y \
+    && sudo apt-get install ffmpeg -y \
+    && sudo apt-get install libopus-dev -y \
+    && sudo apt-get install libffi-dev -y \
+    && sudo apt-get update -y
 
-RUN mkdir -p /home/nodejs/app
-WORKDIR /home/nodejs/app
+#Install Pip
+RUN sudo apt-get install wget \
+    && wget https://bootstrap.pypa.io/get-pip.py \
+    && sudo python3.5 get-pip.py
 
-COPY . /home/nodejs/app
-RUN npm install --production
+ADD . /HAL
+WORKDIR /HAL
 
-CMD [ "npm", "start" ]
+#Install PIP dependencies
+RUN sudo pip install -r requirements.txt
+
+CMD python3.5 hal.py
