@@ -97,6 +97,8 @@ async def on_ready():
     print(bot.user.id)
     print("~~~~~~~")
     await bot.change_presence(game=discord.Game(name="!help for help"))
+    # Background Tasks
+    bot.loop.create_task(background_task())
 
 
 logging.basicConfig(level=logging.INFO)
