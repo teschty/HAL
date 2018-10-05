@@ -3,7 +3,7 @@
 Basic Discord.py Rewrie Bot
 Intend to include examples covering lots of different things
 
-# Hacktoberfest 2017
+# Hacktoberfest 2018
 """
 
 import discord
@@ -33,7 +33,7 @@ async def background_task():
 @bot.command()
 async def christmas(ctx):
     now = datetime.datetime.now()
-    christmas_date = datetime.datetime(2017, 12, 25)
+    christmas_date = datetime.datetime(2018, 12, 25)
     time_delta = christmas_date - now
     await ctx.send("Time 'til Christmas!: " + str(time_delta))
 
